@@ -17,3 +17,19 @@ button{
 	border: none;
 	font-size: 200px;
 }
+
+button:hover{
+	background: rgb(9, 108, 196);
+}
+
+button:active{
+	-webkit-box-shadow:inset 0 0 20px 0 #000000;
+	box-shadow:inset 0 0 20px 0 #000000;
+}
+
+.COUNTSAIL{
+	position: fixed;
+	top: 95%;
+	left: 95%;
+	visibility: visible;
+}
