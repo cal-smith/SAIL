@@ -4,10 +4,14 @@ TWENTY = document.getElementById("TWENTY"),
 
 COUNTSAIL = 0,
 
+sync = false,
+
+SYNCSAIL = 0,
+
 HOWSAIL = document.getElementById("COUNTSAIL"),
 
 ACHIVES = { '10': 'BACKGROUND.CHANGE("ocean.jpg"); ACHIVE.MENT(" SAIL SO HARD");',
-			'20': 'TWENTY = new Audio("fullsail.mp3"); TWENTY.play(); ACHIVE.MENT(" FULLSAIL AHEAD");',
+			'20': 'TWENTY = new Audio("fullsail.mp3"); TWENTY.play(); ACHIVE.MENT(" FULLSAIL AHEAD"); sync = true;',
 			'30': 'TWENTY.pause(); ACHIVE.MENT(" WOW SUCH SAIL"); BACKGROUND.CHANGE(" ");',
 			'50': 'ACHIVE.MENT(" YOU ARE STILL SAIL?");',
 			'80': 'ACHIVE.MENT(" BLAME IT ON MY ADD"); BACKGROUND.CHANGE("boat.jpg");',
@@ -20,6 +24,7 @@ ACHIVES = { '10': 'BACKGROUND.CHANGE("ocean.jpg"); ACHIVE.MENT(" SAIL SO HARD");
 			'205': 'ACHIVE.MENT(" SUCH CLICK);',
 			'210': 'ACHIVE.MENT(" MUCH SAIL");',
 			'300': 'ACHIVE.MENT("YOU REALLY LIKE SAILS, DONTCHA?");',
+			'1000': 'BACKGROUND.SWITCH(true); ACHIVE.MENT(" SUUUUUUUUUPER CHHHHHHIIIIIIIIIIVVVVEEEEEEEEEEEEEE v3!"); ACHIVE.SUPER(true);',
 			'NaN': 'ACHIVE.MENT(" NaNNaNNaNNaNNaN");'
 },
 
@@ -49,11 +54,26 @@ CONSAIL = { //LETS RENAME console.log SHALL WE?
 SAILING = {
 		AUDIO: function(){
 		SAIL = new Audio("sail.mp3");
-		//SAIL.play();
+		SAIL.play();
 		COUNTSAIL ++;
 		HOWSAIL.textContent = COUNTSAIL;
 		if (ACHIVES[COUNTSAIL]){
 			eval(ACHIVES[COUNTSAIL]);
+		}
+		if (COUNTSAIL == Math.floor(Math.random() * (200 - 50))){
+			ACHIVE.SUPER(true);
+			ACHIVE.MENT(" SUUUUUUUUUPER CHHHHHHIIIIIIIIIIVVVVEEEEEEEEEEEEEE v2!");
+		}
+		if (sync){
+			var current = TWENTY.currentTime;
+			if (current > 81 && current < 83 || current > 85 && current < 87 || current > 89 && current < 91 || current > 93 && current < 95 || current > 97 && current < 99){
+				SYNCSAIL += 1;
+			}
+			if (SYNCSAIL == 3){
+				ACHIVE.SUPER(true);
+				ACHIVE.MENT(" SUUUUUUUUUPER CHHHHHHIIIIIIIIIIVVVVEEEEEEEEEEEEEE");
+				sync = false;
+			}
 		}
 	}
 },
@@ -61,16 +81,56 @@ SAILING = {
 BACKGROUND = {
 	CHANGE: function(file){
 		document.body.style.background = '#fff url('+file+')';
+	},
+	SWITCH: function(STATE){//deprecated
+		if (STATE) {
+			document.getElementById("SAIL").classList.add('SAILDOWN');
+			document.getElementById("SUPER").classList.add('SUPERDOWN');
+		} else {
+			document.getElementById("SAIL").classList.remove('SAILDOWN');
+			document.getElementById("SUPER").classList.remove('SUPERDOWN');
+		}
 	}
 },
 
 ACHIVE = {
 	MENT: function(GET){
 		function HIDE(){
-			document.getElementById("ACHIVE").classList.add('HIDE');
+			document.getElementById("ACHIVE").classList.remove('GET');
 		}
 		document.getElementById("CHIVE").textContent = GET;
-		document.getElementById("ACHIVE").classList.remove('HIDE');
+		document.getElementById("ACHIVE").classList.add('GET');
 		setTimeout(HIDE, 1500);
-	} 
+	},
+	SUPER: function(STATE) {
+		if (STATE) {
+			document.getElementById("SAIL").classList.add('SAILDOWN');
+			document.getElementById("SUPER").classList.add('SUPERDOWN');
+			
+			function bounce(testno){
+				var sailtop = Math.floor(Math.random() * (document.body.clientHeight - 200));
+				var sailleft = Math.floor(Math.random() * (document.body.clientWidth - 200));
+				var test = document.getElementById(testno);
+				test.style["top"] = sailtop;
+				test.style["left"] = sailleft;
+			}
+			var i = 0;
+			var intervals = {};
+			while(i < 10){
+				bounce("test"+i);
+				var delay = 1000 + i;
+				setInterval(bounce, delay,"test"+i);
+				i++
+			}
+		} else {
+			document.getElementById("SAIL").classList.remove('SAILDOWN');
+			document.getElementById("SUPER").classList.remove('SUPERDOWN');
+			var i = 0
+			var interval = setInterval(";");
+			while(i < interval){
+				clearInterval(i)
+				i++
+			}
+		}
+	}
 };
