@@ -60,7 +60,7 @@ SAILING = {
 		if (ACHIVES[COUNTSAIL]){
 			eval(ACHIVES[COUNTSAIL]);
 		}
-		if (COUNTSAIL == Math.floor(Math.random() * (200 - 50))){
+		if (COUNTSAIL == Math.floor(Math.random() * (200 - 50)) + 50){
 			ACHIVE.SUPER(true);
 			ACHIVE.MENT(" SUUUUUUUUUPER CHHHHHHIIIIIIIIIIVVVVEEEEEEEEEEEEEE v2!");
 		}
