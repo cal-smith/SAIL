@@ -102,6 +102,8 @@ button:active{
 }
 
 #test5:hover, #test5:after{
+	color: #000;
+	opacity: 1;
 	content: "Back to Sailing";
 	background: lightcoral;
 }
