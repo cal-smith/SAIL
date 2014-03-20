@@ -23,7 +23,9 @@ ACHIVES = { '10': 'BACKGROUND.CHANGE("ocean.jpg"); ACHIVE.MENT(" SAIL SO HARD");
 			'200': 'ACHIVE.MENT(" WOW");',
 			'205': 'ACHIVE.MENT(" SUCH CLICK);',
 			'210': 'ACHIVE.MENT(" MUCH SAIL");',
-			'300': 'ACHIVE.MENT("YOU REALLY LIKE SAILS, DONTCHA?");',
+			'300': 'ACHIVE.MENT(" YOU REALLY LIKE SAILS, DONTCHA?");',
+			'420': 'ACHIVE.MENT(" Snoop Dogg...Lion? Zilla?");BACKGROUND.CHANGE("snoop.gif");',
+			'430': 'BACKGROUND.CHANGE(" ");',
 			'1000': 'BACKGROUND.SWITCH(true); ACHIVE.MENT(" SUUUUUUUUUPER CHHHHHHIIIIIIIIIIVVVVEEEEEEEEEEEEEE v3!"); ACHIVE.SUPER(true);',
 			'NaN': 'ACHIVE.MENT(" NaNNaNNaNNaNNaN");'
 },
@@ -107,10 +109,10 @@ ACHIVE = {
 			document.getElementById("SAIL").classList.add('SAILDOWN');
 			document.getElementById("SUPER").classList.add('SUPERDOWN');
 			
-			function bounce(testno){
+			function bounce(ryanno){
 				var sailtop = Math.floor(Math.random() * (document.body.clientHeight - 200));
 				var sailleft = Math.floor(Math.random() * (document.body.clientWidth - 200));
-				var test = document.getElementById(testno);
+				var test = document.getElementById(ryanno);
 				test.style["top"] = sailtop;
 				test.style["left"] = sailleft;
 			}
@@ -131,6 +133,13 @@ ACHIVE = {
 				clearInterval(i)
 				i++
 			}
+		}
+	},
+	SNOOP: function(STATE){
+		if (STATE){
+
+		} else{
+			
 		}
 	}
 };
